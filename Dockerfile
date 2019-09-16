@@ -1,6 +1,8 @@
 FROM python:alpine
 
 # Install dependencies.
+ADD requirements.txt /opt/rflinkproxy
+WORKDIR /opt/rflinkproxy
 RUN pip install -r requirements.txt
 
 # Copy files in the target image directory.
