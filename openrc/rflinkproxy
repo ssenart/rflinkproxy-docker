@@ -1,0 +1,6 @@
+#!/sbin/openrc-run
+
+command="/usr/local/bin/rflinkproxy"
+command_args="--port=/dev/ttyUSB0 --baud=57600 --listenport 1234"
+command_background=true
+pidfile="/run/${RC_SVCNAME}.pid"
