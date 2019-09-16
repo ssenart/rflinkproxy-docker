@@ -1,2 +1,2 @@
 # rflinkproxy-docker
-Docker image to run an Rflink proxy
+Docker image to run a Rflink proxy
