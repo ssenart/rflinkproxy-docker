@@ -1,12 +1,12 @@
 FROM python:alpine
 
 # Install dependencies.
+RUN mkdir -p /opt/rflinkproxy
 ADD requirements.txt /opt/rflinkproxy
 WORKDIR /opt/rflinkproxy
 RUN pip install -r requirements.txt
 
 # Copy files in the target image directory.
-RUN mkdir -p /opt/rflinkproxy
 ADD openrc/rflinkproxy /etc/init.d/rflinkproxy
 RUN chmod +x /etc/init.d/rflinkproxy
 ADD openrc/crond /etc/init.d/crond
