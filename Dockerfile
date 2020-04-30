@@ -1,4 +1,4 @@
-FROM armv7/python:alpine
+FROM python:alpine
 
 ####################################
 # Build/Container parameters.
