@@ -36,7 +36,7 @@ ADD openrc/rflinkproxy /etc/init.d/rflinkproxy
 RUN chmod +x /etc/init.d/rflinkproxy
 ADD openrc/rflinkproxy.conf.d /etc/conf.d/rflinkproxy
 RUN sed -i "s/\${DOCKER_LISTEN_PORT}/${LISTEN_PORT}/g" /etc/conf.d/rflinkproxy
-RUN sed -i "s/\${DOCKER_CONNECT_PORT}/${CONNECT_PORT}/g" /etc/conf.d/rflinkproxy
+RUN sed -i "s|\${DOCKER_CONNECT_PORT}|${CONNECT_PORT}|g" /etc/conf.d/rflinkproxy
 RUN sed -i "s/\${DOCKER_BAUD_RATE}/${BAUD_RATE}/g" /etc/conf.d/rflinkproxy
 RUN sed -i "s/\${DOCKER_HOST}/${HOST}/g" /etc/conf.d/rflinkproxy
 ADD openrc/crond /etc/init.d/crond
