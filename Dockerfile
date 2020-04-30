@@ -83,7 +83,7 @@ RUN echo '0 */${RESTART_PERIOD} * * * /etc/init.d/rflinkproxy rflinkproxy restar
 
 ####################################
 #CMD ["/sbin/init"]
-CMD ["echo 'hello world'"]
+CMD tail -f /dev/null
 
 # Listen on port ${LISTEN_PORT} for simple socket connection.
 #EXPOSE ${LISTEN_PORT}/tcp
