@@ -1,6 +1,13 @@
 #!/sbin/openrc-run
 
 command="/usr/local/bin/rflinkproxy"
-command_args="--port=/dev/ttyUSB0 --baud=57600 --listenport 1234"
+if [[ -z "${HOST}" ]];
+then
+	# Serial mode.
+	command_args="--listenport=${LISTEN_PORT} --port=${CONNECT_PORT} --baud=${BAUD_RATE}"
+else
+	# TCP mode.
+    command_args="--listenport=${LISTEN_PORT} --port=${CONNECT_PORT} --host=${HOST}"
+fi
 command_background=true
 pidfile="/run/${RC_SVCNAME}.pid"
