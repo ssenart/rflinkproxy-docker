@@ -82,7 +82,7 @@ RUN rc-update add rflinkproxy default
 RUN rc-update add crond default
 
 ####################################
-CMD ["/sbin/init"]
+#CMD ["/sbin/init"]
 
 # Listen on port ${LISTEN_PORT} for simple socket connection.
 EXPOSE ${LISTEN_PORT}/tcp
