@@ -4,43 +4,43 @@ FROM python:alpine
 # Build/Container parameters.
 
 # Port to listen on (default: 1234).
-ARG listen_port=1234
-ENV LISTEN_PORT=${listen_port}
+# ARG listen_port=1234
+# ENV LISTEN_PORT=${listen_port}
 
 # Serial port to connect to (default: /dev/ttyUSB0), or TCP port in TCP mode.
-ARG connect_port=/dev/ttyUSB0
-ENV CONNECT_PORT=${connect_port}
+# ARG connect_port=/dev/ttyUSB0
+# ENV CONNECT_PORT=${connect_port}
 
 # Serial baud rate (default: 57600).
-ARG baud_rate=57600
-ENV BAUD_RATE=${baud_rate}
+# ARG baud_rate=57600
+# ENV BAUD_RATE=${baud_rate}
 
 # TCP mode, connect to host instead of serial port.
-ARG host=
-ENV HOST=${host}
+# ARG host=
+# ENV HOST=${host}
 
 # Restart period (in hours) of the proxy process.
-ARG restart_period=4
-ENV RESTART_PERIOD=${restart_period}
+# ARG restart_period=4
+# ENV RESTART_PERIOD=${restart_period}
 
 ####################################
 # Install dependencies.
-RUN mkdir -p /opt/rflinkproxy
-ADD requirements.txt /opt/rflinkproxy
-WORKDIR /opt/rflinkproxy
-RUN pip install -r requirements.txt
+# RUN mkdir -p /opt/rflinkproxy
+# ADD requirements.txt /opt/rflinkproxy
+# WORKDIR /opt/rflinkproxy
+# RUN pip install -r requirements.txt
 
 ####################################
 # Copy files in the target image directory.
-ADD openrc/rflinkproxy /etc/init.d/rflinkproxy
-RUN chmod +x /etc/init.d/rflinkproxy
-ADD openrc/rflinkproxy.conf.d /etc/conf.d/rflinkproxy
-RUN sed -i "s/\${DOCKER_LISTEN_PORT}/${LISTEN_PORT}/g" /etc/conf.d/rflinkproxy
-RUN sed -i "s|\${DOCKER_CONNECT_PORT}|${CONNECT_PORT}|g" /etc/conf.d/rflinkproxy
-RUN sed -i "s/\${DOCKER_BAUD_RATE}/${BAUD_RATE}/g" /etc/conf.d/rflinkproxy
-RUN sed -i "s/\${DOCKER_HOST}/${HOST}/g" /etc/conf.d/rflinkproxy
-ADD openrc/crond /etc/init.d/crond
-RUN chmod +x /etc/init.d/crond
+# ADD openrc/rflinkproxy /etc/init.d/rflinkproxy
+# RUN chmod +x /etc/init.d/rflinkproxy
+# ADD openrc/rflinkproxy.conf.d /etc/conf.d/rflinkproxy
+# RUN sed -i "s/\${DOCKER_LISTEN_PORT}/${LISTEN_PORT}/g" /etc/conf.d/rflinkproxy
+# RUN sed -i "s|\${DOCKER_CONNECT_PORT}|${CONNECT_PORT}|g" /etc/conf.d/rflinkproxy
+# RUN sed -i "s/\${DOCKER_BAUD_RATE}/${BAUD_RATE}/g" /etc/conf.d/rflinkproxy
+# RUN sed -i "s/\${DOCKER_HOST}/${HOST}/g" /etc/conf.d/rflinkproxy
+# ADD openrc/crond /etc/init.d/crond
+# RUN chmod +x /etc/init.d/crond
 
 ####################################
 # Install and setup OpenRC.
