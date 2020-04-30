@@ -44,7 +44,7 @@ RUN chmod +x /etc/init.d/crond
 
 ####################################
 # Install and setup OpenRC.
-RUN apk add --no-cache openrc
+#RUN apk add --no-cache openrc
 # RUN sed -i 's/^\(tty\d\:\:\)/#\1/g' /etc/inittab \
 #     && sed -i \
 #         # Change subsystem type to "docker"
@@ -70,11 +70,11 @@ RUN apk add --no-cache openrc
 
 ####################################
 # Install and setup Cron daemon.
-RUN apk add --no-cache dcron
+#RUN apk add --no-cache dcron
 
 ####################################
 # Restart rflinkproxy every ${RESTART_PERIOD} hours (sometimes, it happens that it looses its USB connectivity).
-RUN echo '0 */${RESTART_PERIOD} * * * /etc/init.d/rflinkproxy rflinkproxy restart' > /etc/crontabs/root
+#RUN echo '0 */${RESTART_PERIOD} * * * /etc/init.d/rflinkproxy rflinkproxy restart' > /etc/crontabs/root
 
 ####################################
 # Register rflinkproxy and crond as new services to be started at boot time.
@@ -83,7 +83,6 @@ RUN echo '0 */${RESTART_PERIOD} * * * /etc/init.d/rflinkproxy rflinkproxy restar
 
 ####################################
 #CMD ["/sbin/init"]
-CMD tail -f /dev/null
 
 # Listen on port ${LISTEN_PORT} for simple socket connection.
 #EXPOSE ${LISTEN_PORT}/tcp
