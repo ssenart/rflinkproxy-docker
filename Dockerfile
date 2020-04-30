@@ -78,11 +78,11 @@ RUN echo '0 */${RESTART_PERIOD} * * * /etc/init.d/rflinkproxy rflinkproxy restar
 
 ####################################
 # Register rflinkproxy and crond as new services to be started at boot time.
-RUN rc-update add rflinkproxy default
-RUN rc-update add crond default
+#RUN rc-update add rflinkproxy default
+#RUN rc-update add crond default
 
 ####################################
 #CMD ["/sbin/init"]
 
 # Listen on port ${LISTEN_PORT} for simple socket connection.
-EXPOSE ${LISTEN_PORT}/tcp
+#EXPOSE ${LISTEN_PORT}/tcp
