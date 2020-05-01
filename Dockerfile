@@ -74,7 +74,7 @@ RUN apk add --no-cache dcron
 
 ####################################
 # Restart rflinkproxy every ${RESTART_PERIOD} hours (sometimes, it happens that it looses its USB connectivity).
-RUN echo '0 */${RESTART_PERIOD} * * * /etc/init.d/rflinkproxy rflinkproxy restart' > /etc/crontabs/root
+RUN echo "0 */${RESTART_PERIOD} * * * /etc/init.d/rflinkproxy rflinkproxy restart" > /etc/crontabs/root
 
 ####################################
 # Register rflinkproxy and crond as new services to be started at boot time.
